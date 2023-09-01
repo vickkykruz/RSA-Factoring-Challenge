@@ -1,0 +1,24 @@
+#!/usr/bin/python3
+from math import isqrt
+import sys
+
+# Def a function to display yhe printed output
+def output_number(num):
+    """ This is a method that return the output factorization """
+
+    for i in range(2, isqrt(num) + 1):
+        if num % i == 0:
+            return f"{num}={i}*{num//i}"
+    return f"{num} is prime"
+
+
+if __name__ == "__main__":
+
+    if len(sys.argv) != 2:
+        print("Usage: factors <file>\n")
+        sys.exit(1)
+
+    with open(sys.argv[1]) as f:
+        for ln in f:
+            n = int(ln.strip())
+            print(output_number(n))

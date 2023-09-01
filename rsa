@@ -1,0 +1,27 @@
+#!/usr/bin/python3
+""" This is a executable file that factorizes the numbera """
+
+# We will import the sys.argv function to read the file
+from sys import argv
+
+with open(argv[1]) as f:
+    for ln in f:
+        # We convert each line to a int
+        num = int(ln)
+
+        print("{:d}=".format(num), end="")
+        if num % 2 == 0:
+            print("{}*2".format(num//2))
+            continue
+
+        # Check if the number is odd
+        for i in range(3, num, 2):
+            if num % i == 0:
+                # Check if the factor is found
+                fac = num//i
+                for j in range(3, fac, 2):
+                    if fac % j == 0 or i % j == 0:
+                        # Check if he factor is not a prime, break loop
+                        break
+                print("{}*{}".format(fac, i))
+                break
